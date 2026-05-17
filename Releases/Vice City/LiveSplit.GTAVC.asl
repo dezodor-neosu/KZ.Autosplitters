@@ -396,6 +396,12 @@ startup
 	
 	// Used later to count stadium missions.
 	vars.stadAllCount = 0;
+
+	vars.cameraAt = (Func<float, float, float, float, float, float, bool>)((camX, camY, camZ, x, y, z) =>
+		Math.Abs(camX - x) < 0.01f &&
+		Math.Abs(camY - y) < 0.01f &&
+		Math.Abs(camZ - z) < 0.01f
+	);
 	
 }
 
@@ -652,7 +658,7 @@ split
 	
 	//no ssu splits
 	if ((settings["Tswine"]) && (!vars.split.Contains("Tswine"))) {		
-		if ((current.camX + " " + current.camY + " " + current.camZ == "-229.438 -1364.204 12.607")) {
+		if (vars.cameraAt(current.camX, current.camY, current.camZ, -229.438f, -1364.204f, 12.607f)) {
 			if(current.tswineCall) {
 				vars.split.Add("Tswine");
 				vars.doSplit = true;
@@ -660,13 +666,13 @@ split
 		}
 	}
 	if ((settings["StarIsland"]) && (!vars.split.Contains("StarIsland"))) {
-		if ((current.camX + " " + current.camY + " " + current.camZ == "-381.923 -473.339 48.904")) {
+		if (vars.cameraAt(current.camX, current.camY, current.camZ, -381.923f, -473.339f, 48.904f)) {
 			vars.split.Add("StarIsland");
 			vars.doSplit = true;
 		}
 	}
 	if ((settings["SYS"]) && (!vars.split.Contains("SYS"))) {
-		if ((current.camX + " " + current.camY + " " + current.camZ == "-229.438 -1364.204 12.607")) {
+		if (vars.cameraAt(current.camX, current.camY, current.camZ, -229.438f, -1364.204f, 12.607f)) {
 			if(current.sysCall) {
 				vars.split.Add("SYS");
 				vars.doSplit = true;
@@ -674,19 +680,19 @@ split
 		}
 	}
 	if ((settings["DiazDed"]) && (!vars.split.Contains("DiazDed"))) {
-		if ((current.camX + " " + current.camY == "-393.7734 -555.7239") && (current.camZ > 26.9) && (current.camZ < 27)) {
+		if ((Math.Abs(current.camX + 393.7734f) < 0.01f) && (Math.Abs(current.camY + 555.7239f) < 0.01f) && (current.camZ > 26.9) && (current.camZ < 27)) {
 			vars.split.Add("DiazDed");
 			vars.doSplit = true;
 		}
 	}
 	if ((settings["CopLandEnd"]) && (!vars.split.Contains("CopLandEnd"))) {
-		if ((current.camX + " " + current.camY + " " + current.camZ == "-369.1 -467.9 22.7")) {
+		if (vars.cameraAt(current.camX, current.camY, current.camZ, -369.1f, -467.9f, 22.7f)) {
 			vars.split.Add("CopLandEnd");
 			vars.doSplit = true;
 		}
 	}
 	if ((settings["CTC"]) && (!vars.split.Contains("CTC"))) {
-		if ((current.camX + " " + current.camY + " " + current.camZ == "-1039.093 -293.828 27.81")) {
+		if (vars.cameraAt(current.camX, current.camY, current.camZ, -1039.093f, -293.828f, 27.81f)) {
 			if(current.ctcCall) {
 				vars.split.Add("CTC");
 				vars.doSplit = true;
